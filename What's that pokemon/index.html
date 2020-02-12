@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What's that pokemon?</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            for(i=42;i>0;i--){
+                $('.med-3').append('<img id="'+i+'" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+i+'.png">')
+            }
+            $('img').click(function(){
+                var id = $(this).attr('id')
+                $.get("https://pokeapi.co/api/v2/pokemon/"+id, function(data) {
+                    var html_str = "<h4>Types</h4><ul>";
+                    for(var i = 0; i < data.types.length; i++) {
+                        html_str += "<li>" + data.types[i].type.name + "</li>";
+                    }
+                    html_str += "</ul>";
+                    $('.med-1').html("<h2>"+data.forms[0].name+"</h2><img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+id+".png'>"+html_str+"<h3>Height</h3><p>"+data.height+"</p><h3>Weight</h3><p>"+data.weight+"</p>")                   
+                }, "json");
+            })
+                
+        })
+    </script>
+</head>
+<body>
+    <div id="container">
+        <div class="sm-4 med-3 lg-3"></div>
+        <div class="sm4 med-1 lg-1"></div>
+    </div>
+</body>
+</html>
+
