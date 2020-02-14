@@ -22,6 +22,11 @@
                     $('.med-1').html("<h2>"+data.forms[0].name+"</h2><img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+id+".png'>"+html_str+"<h3>Height</h3><p>"+data.height+"</p><h3>Weight</h3><p>"+data.weight+"</p>")                   
                 }, "json");
             })
+            $('img').hover(function(){
+                $(this).css('background-color','RGB(233, 150, 122, 0.5)')
+            },function(){
+                $(this).css('background-color','white')
+            })
                 
         })
     </script>
